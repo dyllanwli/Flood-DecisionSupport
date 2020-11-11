@@ -1,0 +1,21 @@
+
+.my-location-btn {
+  position: absolute !important;
+  bottom: 70px;
+  right: 0px;
+  z-index: 3;
+  background: white !important;
+}
+
+.my-location-btn:hover {
+  position: absolute !important
+}
+
+.my-location-title {
+  height: 40px;
+}
+
+.v-menu__content {
+  box-shadow: none;
+  margin-top: -10px;
+}
