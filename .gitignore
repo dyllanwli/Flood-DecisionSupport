@@ -1,0 +1,8 @@
+.vscode/*
+
+
+api.json
+
+
+assets/*.crt
+assets/*.key
