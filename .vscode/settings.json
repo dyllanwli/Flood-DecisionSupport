@@ -1,6 +1,6 @@
 {
     "liveServer.settings.https": {
-        "enable": true,
+        "enable": false,
         "cert": "certificate.crt", //full path
         "key": "privateKey.key", //full path
         "passphrase": "12345"
