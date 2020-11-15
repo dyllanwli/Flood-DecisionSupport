@@ -46,6 +46,8 @@ if st.checkbox("Critical Facilities"):
     st.slider("Assign Weights for Critical Facilities")
 if st.checkbox("Development Patterns"):
     st.slider("Assign Weights for Development Patterns")
+if st.checkbox("Transportation Network"):
+    st.slider("Assign Weights for Transportation Network")
 
 st.write("""
 ---
