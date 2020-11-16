@@ -82,7 +82,7 @@ st.write("""
 
 
 st.button("Check Relevant Decision Problems")
-st.button("Revise Your Selections and Weights")
 st.button("Submit")
+st.button("Sensitivity Report")
 
 
