@@ -69,11 +69,12 @@ st.write("""
 ---
 """)
 
-if st.checkbox("Social Media"):
-    st.radio(
-        "Select Social Media User Type",
-        ('Single User', 'Group User')
-    )
+st.checkbox("Social Media")
+
+st.radio(
+    "Select Social Media User Type",
+    ('Single User', 'Group User')
+)
 
 
 st.write("""
