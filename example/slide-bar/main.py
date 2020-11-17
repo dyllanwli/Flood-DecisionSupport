@@ -9,9 +9,8 @@ import pandas as pd
 # '#', option
 
 st.write("""
----
 
-## Multi-Scale Climate and Flood Simulation
+### Multi-Scale Climate and Flood Simulation
 """)
 
 st.checkbox("Sea Level Rise")
@@ -22,9 +21,8 @@ st.checkbox("Coupled Hygrologic-Hydraulic Flood Simulation Model")
 
 
 st.write("""
----
 
-## Social Exposure
+### Social Exposure
 """)
 if st.checkbox("Population Density"):
     st.slider("Assign Weights for Population Density")
@@ -38,9 +36,8 @@ if st.checkbox("Mobility and Human Dynamics"):
     st.slider("Assign Weights for Mobility and Human Dynamics")
 
 st.write("""
----
 
-## Infrastructure Exposure
+### Infrastructure Exposure
 """)
 if st.checkbox("Critical Facilities"):
     st.slider("Assign Weights for Critical Facilities")
@@ -50,9 +47,8 @@ if st.checkbox("Transportation Network"):
     st.slider("Assign Weights for Transportation Network")
 
 st.write("""
----
 
-## Ecosystem Exposure
+### Ecosystem Exposure
 """)
 if st.checkbox("Natural Areas and Open Space"):
     st.slider("Assign Weights for Natural Areas and Open Space")
@@ -77,9 +73,9 @@ st.radio(
 )
 
 
-st.write("""
----
-""")
+# st.write("""
+# ---
+# """)
 
 
 st.button("Check Relevant Decision Problems")
