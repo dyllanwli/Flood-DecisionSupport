@@ -18,12 +18,13 @@ st.checkbox("Storm Surge")
 st.checkbox("Citizen-Science Based Flood Depth Mapping")
 st.checkbox("High-resolution Global Earth System Model")
 st.checkbox("Coupled Hygrologic-Hydraulic Flood Simulation Model")
-st.multiselect("Sea Level Rise Inundation - 2ft Above MHHW",
+st.multiselect("USGS Data",
     options=("USGS Data 1", "USGS Data 2")
 )
 
 
 st.write("""
+
 
 ### Social Exposure
 """)
@@ -40,7 +41,7 @@ if st.checkbox("Mobility and Human Dynamics"):
 
 st.write("""
 
-### Infrastructure Exposure
+###  Infrastructure Exposure
 """)
 if st.checkbox("Critical Facilities"):
     st.slider("Assign Weights for Critical Facilities")
