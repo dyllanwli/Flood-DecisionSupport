@@ -69,8 +69,8 @@ st.write("""
 
 ### Econimic Data
 """)
-if st.checkbox("NOAA disaster damage data and Realtor data"):
-    st.slider("Assign Weights for NOAA disaster damage data and Realtor data")
+if st.checkbox("NOAA disaster damage data"):
+    st.slider("Assign Weights for NOAA disaster damage data")
 if st.checkbox("American Community Survey (ACS) - Census Bureau"):
     st.slider("Assign Weights for American Community Survey (ACS) - Census Bureau")
 if st.checkbox("Realtor API"):
