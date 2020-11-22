@@ -71,6 +71,10 @@ st.write("""
 """)
 if st.checkbox("NOAA disaster damage data and Realtor data"):
     st.slider("Assign Weights for NOAA disaster damage data and Realtor data")
+if st.checkbox("American Community Survey (ACS) - Census Bureau"):
+    st.slider("Assign Weights for American Community Survey (ACS) - Census Bureau")
+if st.checkbox("Realtor API"):
+    st.slider("Assign Weights for Realtor API")
 
 st.write("""
 ---
@@ -79,7 +83,7 @@ st.write("""
 st.checkbox("Social Media")
 
 st.radio(
-    "Select Social Media User Type",
+    "User Type",
     ('Single User', 'Group User')
 )
 
