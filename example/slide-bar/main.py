@@ -96,6 +96,8 @@ st.radio(
 st.button("Check Relevant Decision Problems")
 st.button("Submit")
 st.button("Sensitivity Report")
+st.button("Share Data and Results")
+
 
 st.markdown('<style>.st-c2{font-weight: 500;font-size:1.25rem;} .Widget>label{font-weight: 500;font-size:1.25rem;}</style>', unsafe_allow_html=True)
 
