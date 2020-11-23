@@ -67,7 +67,7 @@ if st.checkbox("Wetland Potential"):
 
 st.write("""
 
-### Econimic Data
+### Economic Data
 """)
 if st.checkbox("NOAA disaster damage data"):
     st.slider("Assign Weights for NOAA disaster damage data")
