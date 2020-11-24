@@ -16,7 +16,7 @@ st.write("""
 st.checkbox("Sea Level Rise")
 st.checkbox("Storm Surge")
 st.checkbox("Citizen-Science Based Flood Depth Mapping")
-st.checkbox("High-resolution Global Earth System Model")
+st.checkbox("Regional Earth System Model - Drought Predictions")
 st.checkbox("Coupled Hygrologic-Hydraulic Flood Simulation Model")
 st.multiselect("USGS Data",
     options=("USGS Data 1", "USGS Data 2")
