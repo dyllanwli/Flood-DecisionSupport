@@ -36,8 +36,7 @@ angular.module("orsApp").constant("orsNamespaces", {
    */
   metadata: {
     name: "Template metadata name",
-    description:
-      "Template description",
+    description: "Template description",
     authorName: "Template author name",
     authorEmailId: "some_person",
     authorEmailDomain: "some_email",

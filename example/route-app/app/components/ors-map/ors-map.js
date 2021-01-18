@@ -62,6 +62,7 @@ angular.module("orsApp").directive("orsMap", () => {
         let ak = "?api_key=" + apiKey;
 
         $scope.translateFilter = $filter("translate");
+        // listed below const are openstreetmap
         const bkgtopplus = L.tileLayer.wms(orsNamespaces.layerBkgTopPlus.url, {
           layers: "web",
           format: "image/png",
@@ -440,14 +441,17 @@ angular.module("orsApp").directive("orsMap", () => {
             if (settings.lat && settings.lng && settings.zoom) {
               $scope.orsMap.setView(
                 {
-                  lat: settings.lat,
-                  lng: settings.lng
+                  // lat: settings.lat,
+                  // lng: settings.lng
+                  lat: 29.839453,
+                  lng: -95.517883
                 },
-                settings.zoom
+                // settings.zoom
+                11
               );
             } else {
-              // Heidelberg
-              $scope.orsMap.setView([49.409445, 8.692953], 13);
+              // set to Houston
+              $scope.orsMap.setView([29.839453, -95.517883], 13);
               if (orsCookiesFactory.getMapOptions()) {
                 // Welcome box
                 $scope.welcomeMsgBox = L.control({
@@ -545,14 +549,14 @@ angular.module("orsApp").directive("orsMap", () => {
           setSettings();
         };
         $scope.baseLayers = {
-          "TopPlus-Web-Open": bkgtopplus,
-          "TopPlus-Web-Open Greyscale": bkgtopplusgrey,
+          // "TopPlus-Web-Open": bkgtopplus,
+          // "TopPlus-Web-Open Greyscale": bkgtopplusgrey,
           OpenStreetMap: openstreetmap,
-          OpenCycleMap: opencyclemap,
-          "Transport Dark": transportdark,
-          Outdoors: outdoors,
-          "World Imagery": worldImagery,
-          CycleOSM: cycleOSM
+          // OpenCycleMap: opencyclemap,
+          // "Transport Dark": transportdark,
+          // Outdoors: outdoors,
+          "World Imagery": worldImagery
+          // CycleOSM: cycleOSM
         };
         $scope.mapModel.map.on("load", evt => {
           // add mapstyle

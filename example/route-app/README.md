@@ -1,11 +1,11 @@
 # Quick Start
 
-+ TL;DR
+## TL;DR
 ```
 ./scripts/install.sh
 ```
 
-
+## Install
 + install modules
 ```
 cd route-app
@@ -25,6 +25,16 @@ cd bower_components/angularjs-slider
 # install all modules listed as dependencies in package.json
 npm install
 ```
+
+## Development
+To enable console output information and logging for bugfixing and feature development do:
+```
+grunt dev
+```
+
+## Changelog
++ ~~setup development env~~
++ ~~~update welcom box~
 
 ### License Acknowledgement
 (The MIT License)

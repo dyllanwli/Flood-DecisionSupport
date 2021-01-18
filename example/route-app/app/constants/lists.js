@@ -447,37 +447,11 @@ angular.module("orsApp").constant("lists", {
   userOptions: {
     languages: {
       default: "en-US",
-      all: [
-        "de-DE",
-        "en-US",
-        "en-GB",
-        "zh-CN",
-        "pt-PT",
-        "es-ES",
-        "ru-RU",
-        "fr-FR",
-        "pl-PL",
-        "it-IT",
-        "id-ID",
-        "hu-HU"
-      ]
+      all: ["en-US", "zh-CN"]
     },
     routinglanguages: {
       default: "en-US",
-      all: [
-        "de",
-        "en-US",
-        "pt",
-        "gr",
-        "ru",
-        "hu",
-        "fr",
-        "it",
-        "nl",
-        "zh-CN",
-        "es",
-        "id"
-      ]
+      all: ["en-US", "zh-CN"]
     },
     units: {
       default: "km",
@@ -643,7 +617,7 @@ angular.module("orsApp").constant("lists", {
   layerStyles: {
     route: function() {
       return {
-        color: "#b5152b",
+        color: "#303f9f",
         weight: 5,
         opacity: 1
       };
