@@ -6,6 +6,7 @@
         "passphrase": "12345"
     },
     "search.exclude": {
-        "**/build": true
+        "**/build": true,
+        "**/templates.js": true
     }
 }
