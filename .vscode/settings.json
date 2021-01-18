@@ -4,5 +4,8 @@
         "cert": "certificate.crt", //full path
         "key": "privateKey.key", //full path
         "passphrase": "12345"
+    },
+    "search.exclude": {
+        "**/build": true
     }
 }
