@@ -1,0 +1,139 @@
+<a ng-click="show = !show" class="leaflet-locations">
+</a>
+<div ng-show="show" class="locations">
+   <div>
+       <div class="categories" ng-show="!showSubcategories">
+           <div class="c-nav">
+               <div>
+                   <div>Locations</div>
+               </div>
+               <div>
+                   <div ng-click="clearLocations()">
+                           <i class="fa fa-trash"></i>
+                   </div>
+                   <div ng-click="show = !show">
+                       <i class="fa fa-remove"></i>
+                   </div>
+               </div>
+               
+           </div>
+           <div class="c-list">
+               <div class="ui grid">
+                 <div class="four wide column category" ng-repeat="(category, obj) in categories" ng-click="toggleSubcategories(category)">
+                   <div tooltip-side="top" tooltip-template="{{(obj.name | translate)}}" tooltips="" ng-bind-html="categoryIcons[category]">
+                   </div>
+                   <div class="category-checkbox">
+                       <input type="checkbox" ng-model="obj.selected" ng-click="setSubcategories(category); $event.stopPropagation();" indeterminate/>
+                       <!--{{obj.selected}}-->    
+                   </div>
+                 </div>
+               </div>
+           </div>
+       </div>
+       <div class="sub-categories" ng-show="showSubcategories">
+           <div class="sc-nav">
+               <div ng-click="toggleSubcategories()">
+                   <i class="fa fa-lg fa-arrow-left"></i>
+               </div>
+               <div>
+                   <div class="ui compact menu">
+                     <div class="ui simple dropdown item">
+                       Categories
+                       <i class="dropdown icon"></i>
+                       <div class="menu">
+                         <div class="item" ng-repeat="(category, obj) in categories" ng-click="selectCategory(category);">{{obj.name}}</div>
+                       </div>
+                     </div>
+                   </div>
+               </div>
+           </div>
+           <div class="sc-list">
+               <ul>
+                   <li ng-repeat="(scId, scObj) in categories[selectedCategoryId].subCategories">
+                       <div class="ui checkbox">
+                           <input id="{{scId}}" name="subcategory" ng-click="verifySubcategory(selectedCategoryId)" ng-model="scObj.selected" type="checkbox">
+                               <label for="{{scId}}" ng-bind-html="(scObj.name | translate)">
+                               </label>
+                           </input>
+                       </div>
+                   </li>
+               </ul>
+           </div>
+       </div>
+   </div>
+   <div class="search-input">
+      <!--<div class="ui fluid action input">
+           <input ng-model="namefilter" placeholder="{{getPlaceholder()}}" select-on-click="" type="text">  
+           </input>
+           <div ng-class="{'ui primary button': !loading, 'ui primary loading button': loading, 'ui primary disabled button': disabled}" ng-click="callLocations();">Search</div>
+       </div>-->
+       <div ng-class="{'ui primary button': !loading, 'ui primary loading button': loading, 'ui primary disabled button': disabled}" ng-click="callLocations();">Search</div>
+
+   </div>
+   <div class="result-list" ng-show="results.length > 0">
+        <div class="poi-header">
+           <div>
+                <div ng-click="showResults = !showResults">
+                   <i ng-class="showResults ? 'fa fa-window-minimize' : 'fa fa-expand'"></i>
+               </div>
+           </div>
+           <div>
+               <div ng-bind-html="('DETAILS' | translate)"></div>
+               <div ng-bind-html="'OSM'"></div>
+           </div>
+       </div>
+       <div class="poi-items" ng-show="showResults">
+           <div class="poi-item" ng-repeat="feature in results" ng-init="osmTags = feature.properties['osm_tags']" ng-click="panTo(feature.geometry.coordinates);" ng-mouseout="DeEmphPoi();" ng-mouseover="EmphPoi(feature.geometry.coordinates, feature.properties.categoryGroupId);">
+               <div class="poi-row">
+                   <div class="icon" ng-bind-html='categoryIcons[feature.properties.categoryGroupId]'></div>
+                   <div class="text" ng-if="osmTags.name === undefined" ng-bind-html="feature.properties.noUnderscoreName"></div>
+                   <div class="text" ng-if="osmTags.name" ng-bind-html='osmTags.name'></div>
+                   <div class="icon pointer" ng-click="poiDetails = !poiDetails; $event.stopPropagation();" ng-show='osmTags.address || osmTags.phone || osmTags.wheelchair || osmTags.website'>
+                       <i ng-class="getClass(poiDetails)" >
+                       </i>
+                   </div>
+                   <div class="icon pointer">
+                       <a target="_blank" ng-href="{{makeUrl(feature.properties.osm_id)}}">
+                           <i class="fa fa-map">
+                           </i>
+                       </a> 
+                   </div>
+               </div>                                  
+               <div class="collapsable poi-details" ng-class="{ showMe: poiDetails }">    
+                   <div class="poi-row" ng-if="osmTags.address">
+                       <div class="icon">
+                           <i class="fa fa-address-card"></i>
+                       </div>
+                       <div class="text">
+                           <span ng-if=osmTags.address.street ng-bind-html="osmTags.address.street + ', '"></span>
+                           <span ng-if=osmTags.address.house_number ng-bind-html="osmTags.address.house_number + ', '"></span>
+                           <span ng-if=osmTags.address.postal_code ng-bind-html="osmTags.address.postal_code + ', '"></span>
+                           <span ng-if=osmTags.address.locality ng-bind-html="osmTags.address.locality + ', '"></span>
+                           <span ng-if=osmTags.address.region ng-bind-html="osmTags.address.region + ', '"></span>
+                           <span ng-if=osmTags.address.country ng-bind-html="osmTags.address.country"></span>
+                       </div>                                        
+                   </div>
+                    <div class="poi-row" ng-if="osmTags.phone">
+                       <div class="icon">
+                           <i class="fa fa-phone"></i>
+                       </div>
+                       <div class="text" ng-bind-html='osmTags.phone'></div>
+                   </div>
+                    <div class="poi-row" ng-if="osmTags.website">
+                       <div class="icon">
+                           <i class="fa fa-globe"></i>
+                       </div> 
+                       <div class="text" ng-bind-html="osmTags.website">
+                       </div>
+                   </div>
+                   <div class="poi-row" ng-if="osmTags.wheelchair">
+                        <div ng-if="osmTags.wheelchair">
+                           <i class="fa fa-wheelchair-alt"></i>
+                       </div>                                       
+                   </div> 
+               </div> 
+               
+           </div>
+       </div>     
+   </div>
+</div>

@@ -58,15 +58,21 @@ angular.module("orsApp.ors-header", []).component("orsHeader", {
        * Overwrites the current ctrl.env object
        * @param {String} fill - name of the preset to apply
        */
+      apiSliderOptionList = [
+        "directions",
+        "matrix",
+        "isochrones"
+      ]
+      localSliderOptionList = [
+        "directions",
+        "matrix",
+        "isochrones"
+      ]
       ctrl.presetEndpoints = fill => {
         if (fill === "local") {
           angular.forEach(Object.keys(ctrl.currentOptions.env), key => {
             ctrl.envBase = "http://localhost:8082/ors/v2";
-            ctrl.currentOptions.env[key] = [
-              "directions",
-              "matrix",
-              "isochrones"
-            ].includes(key)
+            ctrl.currentOptions.env[key] = localSliderOptionList.includes(key)
               ? ctrl.envBase + "/" + key
               : "https://api.openrouteservice.org/" + key;
           });
@@ -74,11 +80,7 @@ angular.module("orsApp.ors-header", []).component("orsHeader", {
           angular.forEach(Object.keys(ctrl.currentOptions.env), key => {
             ctrl.envBase = "https://api.openrouteservice.org";
             ctrl.currentOptions.env[key] = ctrl.envBase + "/";
-            ctrl.currentOptions.env[key] += [
-              "directions",
-              "isochrones",
-              "matrix"
-            ].includes(key)
+            ctrl.currentOptions.env[key] += apiSliderOptionList.includes(key)
               ? "v2/" + key
               : key;
           });
