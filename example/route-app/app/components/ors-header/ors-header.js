@@ -58,16 +58,8 @@ angular.module("orsApp.ors-header", []).component("orsHeader", {
        * Overwrites the current ctrl.env object
        * @param {String} fill - name of the preset to apply
        */
-      apiSliderOptionList = [
-        "directions",
-        "matrix",
-        "isochrones"
-      ]
-      localSliderOptionList = [
-        "directions",
-        "matrix",
-        "isochrones"
-      ]
+      apiSliderOptionList = ["directions", "matrix", "isochrones"];
+      localSliderOptionList = ["directions", "matrix", "isochrones"];
       ctrl.presetEndpoints = fill => {
         if (fill === "local") {
           angular.forEach(Object.keys(ctrl.currentOptions.env), key => {
