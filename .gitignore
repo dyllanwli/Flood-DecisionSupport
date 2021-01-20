@@ -3,3 +3,4 @@ api.json
 
 assets/*.crt
 assets/*.key
+node_modules
