@@ -43,7 +43,7 @@ const appConfig = {
   supportsSearchMode: true, // if the search mode is supported
   supportsMyLocationBtn: true, // if the my location btn is supported on the map view
   initialMapMaxZoom: 18, // the initial max zoom
-  initialZoomLevel: 6, // the initial zoom level
+  initialZoomLevel: 10, // the initial zoom level
 
   // The map tile providers available. At least one must be present
   mapTileProviders: [

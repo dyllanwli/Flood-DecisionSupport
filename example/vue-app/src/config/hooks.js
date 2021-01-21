@@ -4,7 +4,7 @@
 
 // THE CODE BELOW IS COMMENTED out BECAUSE THEY ARE JUST EXAMPLES
 
-/*
+
 import main from '@/main'
 import PluginExample from '@/plugins/plugin-example/plugin-example.js'
 
@@ -69,7 +69,7 @@ appHooks.add('loadMenuItems', () => {
   // This hook is called if appConfig.appMenu.useORSMenu is not true
   // A promise is expected to be returned.
   return new Promise((resolve, reject) => {
-    let items = [] // `items` is expected to contain an array of menu items
+    let items = ["test-item"] // `items` is expected to contain an array of menu items
     resolve(items)
   })
 }, 1)
@@ -408,5 +408,3 @@ appHooks.add('rightClickContentReady', (hookData) => {
   // hookData has the following structure = {context: Object, containerRef: Object, latlng: Object}
   // Do something
 })
-
-*/
