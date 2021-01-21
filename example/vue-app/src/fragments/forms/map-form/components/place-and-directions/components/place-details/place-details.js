@@ -1,4 +1,6 @@
-import Share from '@/fragments/forms/map-form/components/share/Share'
+
+// TODO: add share feature
+// import Share from '@/fragments/forms/map-form/components/share/Share'
 import geoUtils from '@/support/geo-utils'
 import resolver from '@/support/routes-resolver'
 import MapViewData from '@/models/map-view-data'
@@ -81,6 +83,6 @@ export default {
     }
   },
   components: {
-    Share
+    // Share
   }
 }

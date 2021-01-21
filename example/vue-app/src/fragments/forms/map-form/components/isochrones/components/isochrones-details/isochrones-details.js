@@ -1,4 +1,6 @@
-import Share from '@/fragments/forms/map-form/components/share/Share'
+
+// TODO: add share feature
+// import Share from '@/fragments/forms/map-form/components/share/Share'
 import Download from '@/fragments/forms/map-form/components/download/Download'
 import PolygonUtils from '@/support/polygon-utils'
 import MapViewData from '@/models/map-view-data'
@@ -15,7 +17,7 @@ export default {
     }
   },
   components: {
-    Share,
+    // Share,
     Download
   },
   methods: {

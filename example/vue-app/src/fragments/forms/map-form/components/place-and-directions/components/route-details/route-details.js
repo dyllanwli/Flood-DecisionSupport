@@ -1,6 +1,7 @@
 import routeData from '@/support/map-data-services/ors-response-data-extractors/route-data'
 import Download from '@/fragments/forms/map-form/components/download/Download'
-import Share from '@/fragments/forms/map-form/components/share/Share'
+// TODO: add share feature
+// import Share from '@/fragments/forms/map-form/components/share/Share'
 import RouteExtras from './components/extras/RouteExtras'
 import MapViewData from '@/models/map-view-data'
 import Steps from './components/steps/Steps'
@@ -171,7 +172,7 @@ export default {
   components: {
     Steps,
     Download,
-    Share,
+    // Share,
     RouteExtras
   }
 }

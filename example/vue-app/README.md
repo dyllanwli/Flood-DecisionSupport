@@ -6,6 +6,9 @@ installation
 npm run dev
 ```
 
+# Notes
++ custom element loaded via `compoment/somejs.js` as `CompomentName` and be added to someVue.vue as `compoment-name`
+
 # changelog
 
 + remove header on App.vue, app.js

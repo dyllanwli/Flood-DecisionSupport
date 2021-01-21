@@ -16,9 +16,9 @@
           @clicked="toggleRoundTrip" :icon="'settings_backup_restore'"
           :color="roundtripActive ? 'primary' : 'default'"></map-form-btn>
       </v-flex>
-      <v-flex :class="{'high-resolution': $highResolution}" v-if="isEnabled('routeImporter')">
+      <!-- <v-flex :class="{'high-resolution': $highResolution}" v-if="isEnabled('routeImporter')">
         <route-importer @contentUploaded="contentUploaded"></route-importer>
-      </v-flex>
+      </v-flex> -->
       <v-spacer></v-spacer>
     </v-layout>
   </div> 

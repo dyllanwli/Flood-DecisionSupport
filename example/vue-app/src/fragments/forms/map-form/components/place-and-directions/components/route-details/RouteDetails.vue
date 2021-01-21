@@ -2,8 +2,9 @@
 <div>
   <box background="white" v-if="hasRoutes" custom-class="expansion-box" noShadow>
     <div slot="header">
-      <download :map-view-data="mapViewData" ></download>
-      <share></share>
+      <!-- remove t hose features for later development -->
+      <!-- <download :map-view-data="mapViewData" ></download>
+      <share></share> -->
       <h3>{{$t('routeDetails.routeSummary')}}</h3>
     </div>
     <v-expansion-panel slot="content" class="no-shadow" v-if="hasRoutes" :value="startedPanelExtended">
