@@ -24,7 +24,7 @@ const filters = [
       'cycling-electric',
       'foot-walking',
       'foot-hiking',
-      'wheelchair'
+      // 'wheelchair'
     ],
     default: 'cycling-regular',
     value: 'cycling-regular',
@@ -48,10 +48,10 @@ const filters = [
         icon: 'directions_bus',
         vehicleTypes: ['bus', 'hgv', 'agricultural', 'delivery', 'forestry', 'goods']
       },
-      wheelchair: {
-        slug: 'wheelchair',
-        icon: 'accessible'
-      }
+      // wheelchair: {
+      //   slug: 'wheelchair',
+      //   icon: 'accessible'
+      // }
     }
   },
   {
