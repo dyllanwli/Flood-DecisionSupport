@@ -28,7 +28,7 @@ import wrapperTag from '@/fragments/wrapper/wrapper-tag'
 // The registered hook are loaded and the appLoaded hook is run
 import AppLoader from '@/app-loader'
 import AppHooks from '@/support/app-hooks'
-import MainMenu from '@/common/main-menu'
+// import MainMenu from '@/common/main-menu'
 
 
 const options = { lodash: lodash } // customize the way you want to call it

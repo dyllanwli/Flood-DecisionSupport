@@ -130,9 +130,8 @@
         :token="tileProvider.token"
         layer-type="base"
       />
-      <!-- use v-show to hide a11y button for later development -->
-      <v-btn
-        v-show="visible"
+      <!-- cannot use v-show="visible" to hide a11y button for later development, will pop up Vue warn -->
+      <!-- <v-btn
         fab
         small
         @click.stop="toggleAcessibleMode"
@@ -150,7 +149,7 @@
           "
           >accessibility</v-icon
         >
-      </v-btn>
+      </v-btn> -->
       <v-btn
         fab
         small
@@ -185,13 +184,14 @@
         :active="myLocationActive"
         @updateLocation="updateMyLocation"
       ></my-location>
-      <img
+      <!-- hide brand -->
+      <!-- <img
         class="over-brand"
         v-if="showBrand"
         src="@/assets/img/brand.png"
         :alt="$t('global.brand')"
         :title="$t('global.brand')"
-      />
+      /> -->
 
       <!-- the container below might be used to to programatically add controls/components -->
       <div

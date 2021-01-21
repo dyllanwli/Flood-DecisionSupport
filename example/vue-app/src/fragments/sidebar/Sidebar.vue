@@ -37,6 +37,7 @@
             </div>
           </v-flex>
           <v-spacer></v-spacer>
+          <!-- get top-menu from the components in sidebar -->
           <v-flex xs6 md3 class="sidebar-top-menu">
             <top-menu></top-menu>
           </v-flex>

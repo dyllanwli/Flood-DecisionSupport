@@ -1,4 +1,5 @@
 import store from '@/store/store'
+// import appConfig from '@/config/app-config'
 
 const mapDefinitions = {
   /**
@@ -95,7 +96,8 @@ const mapDefinitions = {
     const defaultTileProvider = store.getters.mapSettings.defaultTileProvider || 'osm'
     const providers = [
       {
-        name: 'Open Street Maps',
+        name: 'OpenStreetMaps',
+        id: 'osm',
         visible: defaultTileProvider === 'osm',
         attribution: '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
         url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -103,36 +105,11 @@ const mapDefinitions = {
       },
       {
         name: 'Satellite imagery',
+        id: 'world-imagery',
         visible: defaultTileProvider === 'world-imagery',
         url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
         attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
         token: null
-      },
-      {
-        name: 'Topography',
-        visible: defaultTileProvider === 'topography',
-        url: 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
-        attribution: 'Map data: &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)',
-        token: null
-      },
-      {
-        name: 'Transport Dark',
-        visible: defaultTileProvider === 'transport-dark',
-        url: 'https://{s}.tile.thunderforest.com/transport-dark/{z}/{x}/{y}.png?apikey=13efc496ac0b486ea05691c820824f5f',
-        attribution: 'Maps &copy; <a href="http://thunderforest.com/">Thunderforest</a>, Data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-        token: null
-      },
-      {
-        name: 'Outdoors',
-        visible: defaultTileProvider === 'outdoors',
-        url: 'https://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png?apikey=13efc496ac0b486ea05691c820824f5f',
-        attribution: 'Maps &copy; <a href="http://thunderforest.com/">Thunderforest</a>, Data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      },
-      {
-        name: 'Cyclosm',
-        visible: defaultTileProvider === 'cyclosm',
-        url: 'https://dev.{s}.tile.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png',
-        attribution: '<a href="https://github.com/cyclosm/cyclosm-cartocss-style/releases" title="CyclOSM - Open Bicycle render">CyclOSM</a> | Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       }
     ]
 

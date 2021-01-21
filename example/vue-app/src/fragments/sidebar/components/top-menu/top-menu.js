@@ -29,6 +29,6 @@ export default {
     }
   },
   components: {
-    FloatingMenu
+    // FloatingMenu
   }
 }

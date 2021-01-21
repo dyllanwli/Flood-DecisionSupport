@@ -1,4 +1,4 @@
-import {ModelService} from 'vue-rest-client'
+import { ModelService } from 'vue-rest-client'
 import appConfig from '@/config/app-config'
 import main from '@/main'
 
