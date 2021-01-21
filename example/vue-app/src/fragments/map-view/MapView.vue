@@ -130,7 +130,9 @@
         :token="tileProvider.token"
         layer-type="base"
       />
+      <!-- use v-show to hide a11y button for later development -->
       <v-btn
+        v-show="visible"
         fab
         small
         @click.stop="toggleAcessibleMode"
