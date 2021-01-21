@@ -4,7 +4,11 @@
       id="map-view"
       ref="map"
       class="map-view"
-      :class="{'low-resolution': $lowResolution, 'extra-low-resolution': $xlResolution, 'click-to-pick': clickToPickActive}"
+      :class="{
+        'low-resolution': $lowResolution,
+        'extra-low-resolution': $xlResolution,
+        'click-to-pick': clickToPickActive,
+      }"
       @click.right="mapRightClick"
       @zoomend="zoomed"
       @baselayerchange="baseLayerChanged"
@@ -14,116 +18,246 @@
       :center="mapCenter"
       :zoom="zoom"
       :options="mapOptions"
-      :style="{height: mapHeight + 'px'}">
-
-      <l-control-polyline-measure v-if="showControls && distanceMeasureToolAvailable" :options="polylineMeasureOptions"/>
+      :style="{ height: mapHeight + 'px' }"
+    >
+      <l-control-polyline-measure
+        v-if="showControls && distanceMeasureToolAvailable"
+        :options="polylineMeasureOptions"
+      />
 
       <!-- draw tool bar is added programatically via map-view.js setAvoidPolygonDrawingTool method -->
       <!-- <l-draw-toolbar :options="drawingOptions" position="topright"/> -->
 
-      <map-view-markers :mode="mode" :markers="markers"          
+      <map-view-markers
+        :mode="mode"
+        :markers="markers"
         @markerMoved="markerMoved"
         @markerClicked="markerClicked"
         @removePlace="removePlace"
-        @markAsDirectfromHere="markAsDirectfromHere">
-      </map-view-markers> 
+        @markAsDirectfromHere="markAsDirectfromHere"
+      >
+      </map-view-markers>
 
-       <map-view-markers 
-        :mode="mode" 
-        :markers="pois" 
+      <map-view-markers
+        :mode="mode"
+        :markers="pois"
         is-poi
-        @markerClicked="markerClicked">
-      </map-view-markers> 
+        @markerClicked="markerClicked"
+      >
+      </map-view-markers>
 
       <!--render isochrones polygons -->
       <template v-if="polygons">
-        <l-polygon v-for="(polygon, index) in polygons"
-          :key="index+'-polygon'"
+        <l-polygon
+          v-for="(polygon, index) in polygons"
+          :key="index + '-polygon'"
           @click="isochroneClicked(index, polygon, $event)"
           :lat-lngs="polygon.latlngs"
           :fillColor="polygon.color"
-          :color="polygon.color">
+          :color="polygon.color"
+        >
           <l-popup v-if="polygon.label">
-            <div :ref="'isochronePopupContainer' + index" >
-              {{polygon.label}}
+            <div :ref="'isochronePopupContainer' + index">
+              {{ polygon.label }}
             </div>
           </l-popup>
         </l-polygon>
       </template>
 
-      <l-circle-marker v-if="circleMarker" :weight="2" color="#1D1D1E" :fill="true" fillColor="#fff" :fillOpacity="0.9"
+      <l-circle-marker
+        v-if="circleMarker"
+        :weight="2"
+        color="#1D1D1E"
+        :fill="true"
+        fillColor="#fff"
+        :fillOpacity="0.9"
         :lat-lng="circleMarker.center"
-        :radius="circleMarker.radius"/>
+        :radius="circleMarker.radius"
+      />
 
-      <l-circle-marker v-if="myPositionMarker" :weight="2" color="#1D1D1E" :fill="true" fillColor="#1C97F3" :fillOpacity="myPositionMarker.opacity"
+      <l-circle-marker
+        v-if="myPositionMarker"
+        :weight="2"
+        color="#1D1D1E"
+        :fill="true"
+        fillColor="#1C97F3"
+        :fillOpacity="myPositionMarker.opacity"
         :lat-lng="myPositionMarker.center"
-        :radius="myPositionMarker.radius">
+        :radius="myPositionMarker.radius"
+      >
         <l-popup>
           <div>
-            {{$t('mapView.yourCurrentLocation')}} <br>
-            {{$t('mapView.accuracy')}}:
-            {{myPositionMarker.accuracy.toFixed(1)}} {{$t('global.units.m')}}
+            {{ $t("mapView.yourCurrentLocation") }} <br />
+            {{ $t("mapView.accuracy") }}:
+            {{ myPositionMarker.accuracy.toFixed(1) }}
+            {{ $t("global.units.m") }}
           </div>
         </l-popup>
       </l-circle-marker>
-      <template  v-for="alternativeRoute in alternativeRoutes">
-        <ors-l-polyline :key="alternativeRoute.index" not-active
+      <template v-for="alternativeRoute in alternativeRoutes">
+        <ors-l-polyline
+          :key="alternativeRoute.index"
+          not-active
           :color="alternativeRouteColor"
-          @click="alternativeRouteIndexSelected(alternativeRoute.index, $event)"            
-          :lat-lngs="alternativeRoute.polyline" >
+          @click="alternativeRouteIndexSelected(alternativeRoute.index, $event)"
+          :lat-lngs="alternativeRoute.polyline"
+        >
         </ors-l-polyline>
       </template>
-       <template v-if="showActivRouteData">
-        <ors-l-polyline :draggable="isInDirectionsMode"
-          @followPolyline="followPolyline" 
+      <template v-if="showActivRouteData">
+        <ors-l-polyline
+          :draggable="isInDirectionsMode"
+          @followPolyline="followPolyline"
           :focused-poly-index="highlightedRoutePointIndex"
-          @addStopViaPolylineDrag="addStopViaPolylineDrag" 
-          :route="activeRouteData" 
-          :tooltip-icon="routingProfileIcon">
+          @addStopViaPolylineDrag="addStopViaPolylineDrag"
+          :route="activeRouteData"
+          :tooltip-icon="routingProfileIcon"
+        >
         </ors-l-polyline>
       </template>
-      <l-control-layers v-if="showControls" :position="layersPosition" :collapsed="true"/>
-        <l-tile-layer
-          v-for="tileProvider in tileProviders"
-          :key="tileProvider.name"
-          :name="tileProvider.name"
-          :visible="tileProvider.visible"
-          :url="tileProvider.url"
-          :attribution="tileProvider.attribution"
-          :token="tileProvider.token"
-          layer-type="base"/>
-      <v-btn fab small @click.stop="toggleAcessibleMode" v-if="accessbilityToolAvailable"
-        :title="$t('maps.turnOnAcessibleMode')" 
-        :class="{'extra-low-resolution': $xlResolution}"
-        class="do-not-trigger-close-bottom-nav accessibility-btn" > 
-        <v-icon large :color="$store.getters.mapSettings.acessibleModeActive? 'primary': 'default'" >accessibility</v-icon>
+      <l-control-layers
+        v-if="showControls"
+        :position="layersPosition"
+        :collapsed="true"
+      />
+      <l-tile-layer
+        v-for="tileProvider in tileProviders"
+        :key="tileProvider.name"
+        :name="tileProvider.name"
+        :visible="tileProvider.visible"
+        :url="tileProvider.url"
+        :attribution="tileProvider.attribution"
+        :token="tileProvider.token"
+        layer-type="base"
+      />
+      <v-btn
+        fab
+        small
+        @click.stop="toggleAcessibleMode"
+        v-if="accessbilityToolAvailable"
+        :title="$t('maps.turnOnAcessibleMode')"
+        :class="{ 'extra-low-resolution': $xlResolution }"
+        class="do-not-trigger-close-bottom-nav accessibility-btn"
+      >
+        <v-icon
+          large
+          :color="
+            $store.getters.mapSettings.acessibleModeActive
+              ? 'primary'
+              : 'default'
+          "
+          >accessibility</v-icon
+        >
       </v-btn>
-      <v-btn fab small v-if="canFitFeatures && showControls" 
+      <v-btn
+        fab
+        small
+        v-if="canFitFeatures && showControls"
         class="fit-all-features"
         :title="$t('mapView.fitAllFeatures')"
-        :class="{'extra-low-resolution': $xlResolution}" 
-        @click.stop="fitAllFeatures()" > 
-        <v-icon large >all_out</v-icon> 
+        :class="{ 'extra-low-resolution': $xlResolution }"
+        @click.stop="fitAllFeatures()"
+      >
+        <v-icon large>all_out</v-icon>
       </v-btn>
 
       <!-- highlight extra info polyline -->
-      <extra-info-highlight v-if="extraInfo" @closed="extraInfo = null" @beforeOpen="isAltitudeModalOpen = false" :extra-info="extraInfo" :polyline-data="activeRouteData.geometry.coordinates"/>
-      <l-height-graph v-if="isAltitudeModalOpen" @closed="closeAltitudeInfo" lg8 sm11 :data="localMapViewData.rawData" :options="lHeightGraphOptions"/>
-      <my-location v-if="supportsMyLocationBtn" class="my-location-btn" :active="myLocationActive" @updateLocation="updateMyLocation"></my-location>
-      <img class="over-brand" v-if="showBrand" src="@/assets/img/brand.png" :alt="$t('global.brand')" :title="$t('global.brand')">
+      <extra-info-highlight
+        v-if="extraInfo"
+        @closed="extraInfo = null"
+        @beforeOpen="isAltitudeModalOpen = false"
+        :extra-info="extraInfo"
+        :polyline-data="activeRouteData.geometry.coordinates"
+      />
+      <l-height-graph
+        v-if="isAltitudeModalOpen"
+        @closed="closeAltitudeInfo"
+        lg8
+        sm11
+        :data="localMapViewData.rawData"
+        :options="lHeightGraphOptions"
+      />
+      <my-location
+        v-if="supportsMyLocationBtn"
+        class="my-location-btn"
+        :active="myLocationActive"
+        @updateLocation="updateMyLocation"
+      ></my-location>
+      <img
+        class="over-brand"
+        v-if="showBrand"
+        src="@/assets/img/brand.png"
+        :alt="$t('global.brand')"
+        :title="$t('global.brand')"
+      />
 
       <!-- the container below might be used to to programatically add controls/components -->
-      <div ref="customMapControlsContainer" style="z-index: 501" class="custom-controls" ></div>
+      <div
+        ref="customMapControlsContainer"
+        style="z-index: 501"
+        class="custom-controls"
+      ></div>
     </l-map>
-    <v-btn v-if="$store.getters.embed" small :title="$t('mapView.viewOnORS')" class="view-on-ors" target="_blank" :href="nonEmbedUrl" > {{$t('mapView.viewOnORS')}} <v-icon right small >open_in_new</v-icon> </v-btn>
-    <map-right-click v-if="!$store.getters.embed" :map-view-data="mapViewData" @closed="clickLatlng = null" @rightClickEvent="handleRightClickEvent"></map-right-click>
-    <map-left-click :current-zoom="zoom" @closed="clickLatlng = null" @directionsToPoint="directionsToPoint"></map-left-click>
+    <v-btn
+      v-if="$store.getters.embed"
+      small
+      :title="$t('mapView.viewOnORS')"
+      class="view-on-ors"
+      target="_blank"
+      :href="nonEmbedUrl"
+    >
+      {{ $t("mapView.viewOnORS") }} <v-icon right small>open_in_new</v-icon>
+    </v-btn>
+    <map-right-click
+      v-if="!$store.getters.embed"
+      :map-view-data="mapViewData"
+      @closed="clickLatlng = null"
+      @rightClickEvent="handleRightClickEvent"
+    ></map-right-click>
+    <map-left-click
+      :current-zoom="zoom"
+      @closed="clickLatlng = null"
+      @directionsToPoint="directionsToPoint"
+    ></map-left-click>
 
     <div v-if="$store.getters.mapSettings.acessibleModeActive">
-      <v-btn fab small @click="moveMapCenter('left')" :title="$t('mapView.moveMapPositionToLeft')" class="move-map-arrow left do-not-trigger-close-bottom-nav" > <v-icon large color="primary" >arrow_back</v-icon> </v-btn>
-      <v-btn fab small @click="moveMapCenter('up')" :title="$t('mapView.moveMapPositionToUp')" class="move-map-arrow up do-not-trigger-close-bottom-nav" > <v-icon large color="primary" >arrow_upward</v-icon> </v-btn>
-      <v-btn fab small @click="moveMapCenter('right')" :title="$t('mapView.moveMapPositionToRight')" class="move-map-arrow right do-not-trigger-close-bottom-nav" > <v-icon large color="primary" >arrow_forward</v-icon> </v-btn>
-      <v-btn fab small @click="moveMapCenter('down')" :title="$t('mapView.moveMapPositionToDown')" class="move-map-arrow down do-not-trigger-close-bottom-nav" :style="{top: acessibilityBtnTopPosition}" > <v-icon large color="primary" >arrow_downward</v-icon> </v-btn>      
+      <v-btn
+        fab
+        small
+        @click="moveMapCenter('left')"
+        :title="$t('mapView.moveMapPositionToLeft')"
+        class="move-map-arrow left do-not-trigger-close-bottom-nav"
+      >
+        <v-icon large color="primary">arrow_back</v-icon>
+      </v-btn>
+      <v-btn
+        fab
+        small
+        @click="moveMapCenter('up')"
+        :title="$t('mapView.moveMapPositionToUp')"
+        class="move-map-arrow up do-not-trigger-close-bottom-nav"
+      >
+        <v-icon large color="primary">arrow_upward</v-icon>
+      </v-btn>
+      <v-btn
+        fab
+        small
+        @click="moveMapCenter('right')"
+        :title="$t('mapView.moveMapPositionToRight')"
+        class="move-map-arrow right do-not-trigger-close-bottom-nav"
+      >
+        <v-icon large color="primary">arrow_forward</v-icon>
+      </v-btn>
+      <v-btn
+        fab
+        small
+        @click="moveMapCenter('down')"
+        :title="$t('mapView.moveMapPositionToDown')"
+        class="move-map-arrow down do-not-trigger-close-bottom-nav"
+        :style="{ top: acessibilityBtnTopPosition }"
+      >
+        <v-icon large color="primary">arrow_downward</v-icon>
+      </v-btn>
     </div>
   </div>
 </template>
