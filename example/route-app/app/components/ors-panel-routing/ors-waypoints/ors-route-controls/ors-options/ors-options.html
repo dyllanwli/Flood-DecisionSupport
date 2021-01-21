@@ -28,7 +28,8 @@
         </rzslider>
     </div>
 </div>
-<div class="options-box" ng-if="$ctrl.routing">
+<!-- round trip settings -->
+<!-- <div class="options-box" ng-if="$ctrl.routing">
     <div class="pointer" ng-click="$ctrl.roundTripOptions = !$ctrl.roundTripOptions">
         <i ng-class="$ctrl.getClass($ctrl.roundTripOptions)">
         </i>
@@ -91,7 +92,7 @@
             </li>
         </ul>
     </div>
-</div>
+</div> -->
 <div class="options-box" ng-show="$ctrl.activeSubgroup == 'Car' || $ctrl.activeSubgroup == 'Bicycle' || $ctrl.activeSubgroup == 'Wheelchair' || $ctrl.activeSubgroup == 'HeavyVehicle' || $ctrl.activeSubgroup == 'Pedestrian'">
     <div class="pointer" ng-click="avoidablesOptions = !avoidablesOptions">
         <i ng-class="$ctrl.getClass(avoidablesOptions)">
@@ -252,7 +253,8 @@
         </ul>
     </div>
 </div>
-<div class="options-box" ng-if="$ctrl.routing && $ctrl.carBrands" ng-show="$ctrl.activeSubgroup == 'Car'">
+<!-- fuel settings -->
+<!-- <div class="options-box" ng-if="$ctrl.routing && $ctrl.carBrands" ng-show="$ctrl.activeSubgroup == 'Car'">
     <div class="pointer" ng-click="fuelSettings = !fuelSettings">
         <i ng-class="$ctrl.getClass(fuelSettings)">
         </i>
@@ -517,7 +519,7 @@
             </li>
         </ul>
     </div>
-</div>
+</div> -->
 <div class="options-box" ng-show="$ctrl.activeSubgroup == 'HeavyVehicle'">
     <div class="pointer" ng-click="hgvOptions = !hgvOptions">
         <i ng-class="$ctrl.getClass(hgvOptions)">
