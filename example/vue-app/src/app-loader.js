@@ -2,7 +2,7 @@ import defaultMapSettings from '@/config/default-map-settings'
 import settingsOptions from '@/config/settings-options.js'
 import constants from '@/resources/constants'
 import appConfig from '@/config/app-config'
-import {HttpClient} from 'vue-rest-client'
+import { HttpClient } from 'vue-rest-client'
 import utils from '@/support/utils'
 import store from '@/store/store'
 import lodash from 'lodash'
@@ -30,7 +30,7 @@ const fetchApiInitialData = () => {
           saveApiData(appConfig.orsApiKey, constants.endpoints)
           resolve()
         } else {
-          let httpClient = new HttpClient({baseURL: appConfig.dataServiceBaseUrl})          
+          let httpClient = new HttpClient({ baseURL: appConfig.dataServiceBaseUrl })
           // Request the public API key from the remote service 
           // (only works when runing the app on valid ORS domains).
           // If the request fails, use the local user key instead
@@ -55,7 +55,7 @@ const fetchApiInitialData = () => {
  */
 const setFittingLocale = (storedLocale) => {
   var deviceLocale = window.navigator.language || window.navigator.userLanguage
-  let locale =  storedLocale || deviceLocale
+  let locale = storedLocale || deviceLocale
   if (locale) {
     locale = locale.toLowerCase()
   }
@@ -73,7 +73,7 @@ const setFittingLocale = (storedLocale) => {
     })
     if (isLocaleValid) {
       locale = isLocaleValid.value
-    }    
+    }
   }
   // If the selected locale is not supported, set the default
   if (!isLocaleValid) {
@@ -115,13 +115,13 @@ const saveApiData = (apiKey, endpoints) => {
         }
       }
     }
-    if ( typeof mapSettings.apiKey !== 'string' || mapSettings.apiKey === '') {
+    if (typeof mapSettings.apiKey !== 'string' || mapSettings.apiKey === '') {
       mapSettings.apiKey = defaultMapSettings.apiKey
     }
     // If the settings was saved in local storage
     // then this option is must start as true
     mapSettings.saveToLocalStorage = true
-  }  
+  }
   storeLocale(mapSettings, locale)
 
   let mainVue = main
@@ -152,7 +152,7 @@ const storeLocale = (mapSettings, locale = null) => {
     settingsOptions.routingInstructionsLocale = locale
   } else {
     validroutingLocale = lodash.find(settingsOptions.routingInstructionsLocales, (l) => {
-      return l.value === fittingLocale.split('-')[0]     
+      return l.value === fittingLocale.split('-')[0]
     })
     if (validroutingLocale) {
       mapSettings.routingInstructionsLocale = validroutingLocale.value
@@ -174,12 +174,12 @@ const checkAndSetEmbedState = () => {
     store.commit('embed', isEmbed)
 
     let parts = location.href.split('/embed/')
-    if (isEmbed && Array.isArray(parts) && parts.length > 1 && parts[1] ) {
+    if (isEmbed && Array.isArray(parts) && parts.length > 1 && parts[1]) {
       let locale = parts[1]
       locale = setFittingLocale(locale)
 
       let settings = store.getters.mapSettings
-      storeLocale(settings, locale) 
+      storeLocale(settings, locale)
     }
     resolve(isEmbed)
   })
@@ -189,9 +189,14 @@ const load = () => {
   return new Promise((resolve) => {
     let apiDataPromise = fetchApiInitialData()
     let embedPromise = checkAndSetEmbedState()
-    let fetchMainMenu = store.dispatch('fetchMainMenu')
+    // TODO: add menu if needed
+    // let fetchMainMenu = store.dispatch('fetchMainMenu')
 
-    Promise.all([apiDataPromise, embedPromise, fetchMainMenu]).then((results) => {
+    Promise.all([
+      apiDataPromise,
+      embedPromise,
+      // fetchMainMenu
+    ]).then((results) => {
       resolve()
     })
   })

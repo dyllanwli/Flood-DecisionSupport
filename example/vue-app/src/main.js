@@ -1,6 +1,7 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 
+// This main.js is executed and global extensions, mixin components are added
 import Vue from '@/common/vue-with-vuetify.js'
 import App from '@/App'
 import router from '@/router'
@@ -24,6 +25,7 @@ import VueLodash from 'vue-lodash'
 import lodash from 'lodash'
 import VueMoment from 'vue-moment'
 import wrapperTag from '@/fragments/wrapper/wrapper-tag'
+// The registered hook are loaded and the appLoaded hook is run
 import AppLoader from '@/app-loader'
 import AppHooks from '@/support/app-hooks'
 import MainMenu from '@/common/main-menu'
@@ -93,7 +95,8 @@ AppLoader.load().then(() => {
   VueInstance.appHooks = new AppHooks()
   VueInstance.appHooks.loadRegisteredHooks()
   VueInstance.appHooks.run('appLoaded', VueInstance)
-  MainMenu.adjustMenu()
+  // TODO: add menu if needed
+  // MainMenu.adjustMenu()
 })
 
 const main = {

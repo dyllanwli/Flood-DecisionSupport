@@ -1,17 +1,34 @@
 <template>
-  <v-app >
-    <v-progress-linear :indeterminate="true" class="progress-linear" :class="{'progress-linear-disabled': !showLoading}"></v-progress-linear>
+  <v-app>
+    <v-progress-linear
+      :indeterminate="true"
+      class="progress-linear"
+      :class="{ 'progress-linear-disabled': !showLoading }"
+    ></v-progress-linear>
     <app-toaster></app-toaster>
-    <app-header :class="{'a11y' : $store.getters.mapSettings.acessibleModeActive}"></app-header>
-    <v-content class="app-content" :class="{'a11y' : $store.getters.mapSettings.acessibleModeActive}">
+    <app-header
+      :class="{ a11y: $store.getters.mapSettings.acessibleModeActive }"
+    ></app-header>
+    <v-content
+      class="app-content"
+      :class="{ a11y: $store.getters.mapSettings.acessibleModeActive }"
+    >
       <app-confirm></app-confirm>
       <app-info></app-info>
-      <transition enter-active-class="animated fadeIn" leave-active-class="animated fadeOut" mode="out-in">
+      <transition
+        enter-active-class="animated fadeIn"
+        leave-active-class="animated fadeOut"
+        mode="out-in"
+      >
         <router-view v-title="title"></router-view>
       </transition>
     </v-content>
-    <app-sidebar :class="{'a11y' : $store.getters.mapSettings.acessibleModeActive}"></app-sidebar>
-    <!-- For instance, we will display n app footer, because the want a full heigh map view -->
+    <app-sidebar
+      :class="{ a11y: $store.getters.mapSettings.acessibleModeActive }"
+    ></app-sidebar>
+    <!-- For instance, we will display n app footer, because the want a full heigh map view 
+    App.vue includes all basic navigation components, like menu, sidebar, gooter and etc.
+    -->
     <!-- <app-footer v-if="$store.getters.displayFooter"></app-footer> -->
   </v-app>
 </template>

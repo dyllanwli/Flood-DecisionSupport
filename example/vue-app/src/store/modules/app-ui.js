@@ -1,5 +1,5 @@
-import MainMenu from '@/common/main-menu'
-
+// import MainMenu from '@/common/main-menu'
+// TODO: add menu if needed
 const state = {
   leftSideBarOpen: false,
   leftSideBarPinned: false,
@@ -7,7 +7,7 @@ const state = {
   displayFooter: true,
   pickPlaceIndex: null,
   pickPlaceId: null,
-  mainMenu: [],
+  // mainMenu: [],
   footerFullHeight: 74,
   footerMiniHeight: 140,
   sidebarFullWidth: 400,
@@ -30,9 +30,9 @@ const getters = {
   displayFooter: state => {
     return state.displayFooter
   },
-  mainMenu: state => {
-    return state.mainMenu
-  },
+  // mainMenu: state => {
+  //   return state.mainMenu
+  // },
   footerFullHeight: state => {
     return state.footerFullHeight
   },
@@ -106,5 +106,5 @@ export default {
   state,
   getters,
   mutations,
-  actions
+  // actions
 }
