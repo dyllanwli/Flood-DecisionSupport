@@ -1,4 +1,3 @@
-import { log4js } from 'log4js'
 angular.module("orsApp.route-service", []).factory("orsRouteService", [
   "$rootScope",
   "$q",
@@ -310,7 +309,7 @@ angular.module("orsApp.route-service", []).factory("orsRouteService", [
     };
     /** process point information */
     orsRouteService.processPointExtras = (route, profile) => {
-      console.log()
+      console.log();
       const fetchExtrasAtPoint = (extrasObj, idx) => {
         const extrasAtPoint = {};
         for (const [key, values] of Object.entries(extrasObj)) {

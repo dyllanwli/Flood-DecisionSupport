@@ -3,3 +3,7 @@ api.json
 
 assets/*.crt
 assets/*.key
+node_modules
+
+**/__pycache__
+fdbackend/fdbackend/custom_config.py
