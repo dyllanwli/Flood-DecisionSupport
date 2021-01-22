@@ -177,10 +177,10 @@ const filters = [
         availableOnModes: [constants.modes.roundTrip, constants.modes.directions],
         valueAsObject: true,
         validWhen: [
-          {
-            ref: 'profile',
-            value: 'wheelchair'
-          }
+          // {
+          //   ref: 'profile',
+          //   value: 'wheelchair'
+          // }
         ],        
         props: [
           {
@@ -372,10 +372,10 @@ const filters = [
                 'steps',
                 'hills'
               ],
-              wheelchair: [
-                'ferries',
-                'steps'
-              ]
+              // wheelchair: [
+              //   'ferries',
+              //   'steps'
+              // ]
             }
           }
         ]

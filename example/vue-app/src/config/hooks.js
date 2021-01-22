@@ -4,7 +4,7 @@
 
 // THE CODE BELOW IS COMMENTED out BECAUSE THEY ARE JUST EXAMPLES
 
-
+/*
 import main from '@/main'
 import PluginExample from '@/plugins/plugin-example/plugin-example.js'
 
@@ -408,3 +408,5 @@ appHooks.add('rightClickContentReady', (hookData) => {
   // hookData has the following structure = {context: Object, containerRef: Object, latlng: Object}
   // Do something
 })
+
+*/
