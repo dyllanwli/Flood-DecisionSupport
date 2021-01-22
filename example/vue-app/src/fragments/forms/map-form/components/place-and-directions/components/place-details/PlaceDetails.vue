@@ -1,7 +1,7 @@
 <template>
   <box background="white" no-shadow>
     <div slot="header">
-      <share></share>
+      <!-- <share></share> -->
       <h3>{{$t('placeDetails.placeDetails')}}</h3>
     </div>
     <div>
