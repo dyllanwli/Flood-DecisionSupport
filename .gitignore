@@ -7,3 +7,4 @@ node_modules
 
 **/__pycache__
 fdbackend/fdbackend/custom_config.py
+example/mb-app/src/config/token.json
