@@ -1,4 +1,4 @@
-import Header from '@/fragments/header/Header'
+// import Header from '@/fragments/header/Header'
 import Sidebar from '@/fragments/sidebar/Sidebar'
 import Footer from '@/fragments/footer/Footer'
 import Toaster from '@/fragments/toaster/Toaster'
@@ -20,7 +20,7 @@ export default {
   },
   name: 'App',
   components: {
-    appHeader: Header,
+    // appHeader: Header,
     appSidebar: Sidebar,
     appFooter: Footer,
     appToaster: Toaster,

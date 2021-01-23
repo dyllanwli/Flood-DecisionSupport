@@ -1,7 +1,7 @@
 
 export default {
   placesAndDirections: {
-    pageTitle: 'ORS Maps',
+    pageTitle: 'Flood Route Maps',
     Places: 'Places',
     isochrones: 'Isochrones',
     place: 'place',

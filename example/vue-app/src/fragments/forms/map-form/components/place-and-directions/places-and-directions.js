@@ -599,6 +599,7 @@ export default {
       const context = this
       return new Promise((resolve, reject) => {
         const places = context.getFilledPlaces()
+        console.log("from/to",places)
 
         if (places.length > 1 || context.$store.getters.mode === constants.modes.roundTrip) {
           context.showInfo(context.$t('placesAndDirections.calculatingRoute', { timeout: 0 }))
