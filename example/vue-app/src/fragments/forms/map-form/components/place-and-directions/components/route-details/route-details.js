@@ -1,5 +1,5 @@
 import routeData from '@/support/map-data-services/ors-response-data-extractors/route-data'
-import Download from '@/fragments/forms/map-form/components/download/Download'
+// import Download from '@/fragments/forms/map-form/components/download/Download'
 // TODO: add share feature
 // import Share from '@/fragments/forms/map-form/components/share/Share'
 import RouteExtras from './components/extras/RouteExtras'

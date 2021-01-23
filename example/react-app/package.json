@@ -1,0 +1,32 @@
+{
+  "name": "react-app",
+  "version": "0.1.0",
+  "dependencies": {
+    "@mapbox/mapbox-gl-directions": "^4.1.0",
+    "@mapbox/polyline": "^1.1.1",
+    "@turf/boolean-disjoint": "^6.3.0",
+    "@turf/turf": "^6.3.0",
+    "axios": "^0.21.1",
+    "mapbox-gl": "^2.0.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "^3.4.3",
+    "turf": "^3.0.14"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
