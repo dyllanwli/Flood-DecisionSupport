@@ -1,0 +1,10 @@
+{
+    "floodLevelColor":{
+        "aliceblue": "#F0F8FF",
+        "lightskyblue": "#87CEFA",
+        "dodgerblue": "#1E90FF",
+        "blue": "#0000FF",
+        "mediumblue": "#0000CD"
+    },
+    "mockDataUrl": "https://raw.githubusercontent.com/TAMUCIDI/demo-data/main/mockFlood.geojson"
+}

@@ -1,44 +1,40 @@
-// import Vue from 'vue'
-import mapboxgl from "mapbox-gl"
-import turf from "turf"
+import React, { useRef } from 'react';
+import useEffectAsync from './utils/useEffectAsync'
+import mapboxgl from 'mapbox-gl';
+import './Map.css';
 
-// import TOKEN from "@/config/token.json"
+import Tooltip from './components/Tooltip';
+import ReactDOM from 'react-dom';
 
-import appConfig from "@/config/app-config.json"
-import polyline from "@mapbox/polyline"
-
-// for issues https://github.com/mapbox/mapbox-gl-directions/issues/157
-import MapboxDirections from '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions'
-import '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions.css'
-
-
+import appConfig from "./config/app-config.json"
 import axios from 'axios'
 
-export default {
-  name: "BaseMap",
-  data() {
-    return {
-      mockData: null,
-      accessToken: "pk.eyJ1IjoiZGl5YTAwMCIsImEiOiJja2s5MThsNG0wdGE5Mm5xbzlpNHkwZzh3In0.NjC_1ozBXfqMkduiE_NmGg",
-      // mapboxMap: null,
-    }
-  },
-  created() {
+import polyline from '@mapbox/polyline'
+import turf from "turf"
+import MapboxDirections from '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions'
+import '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions.css'
+import booleanDisjoint from "@turf/boolean-disjoint"
 
-  },
-  async mounted() {
-    mapboxgl.accessToken = this.accessToken
+mapboxgl.accessToken =
+  'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4M29iazA2Z2gycXA4N2pmbDZmangifQ.-g_vE53SD2WrJ6tFX7QHmA';
 
-    this.mockData = await axios.get(appConfig.mockDataUrl)
+const Map = () => {
+  const mapContainerRef = useRef(null);
+
+  const tooltipRef = useRef(new mapboxgl.Popup({ offset: 15 }));
+
+  // Initialize map when component mounts
+  useEffectAsync(async () => {
 
     let floodLevelColor = appConfig.floodLevelColor
 
-    let mapboxMap = new mapboxgl.Map({
-      container: "mapContainer",
+    console.log(mapContainerRef.current)
+    const mapboxMap = new mapboxgl.Map({
+      container: mapContainerRef.current,
       style: 'mapbox://styles/mapbox/light-v10',
-      center: [103.811279, 1.345399],
-      zoom: 11,
-    })
+      center: [-95.517883, 29.839453],
+      zoom: 11
+    });
 
     let nav = new mapboxgl.NavigationControl();
 
@@ -46,7 +42,7 @@ export default {
       accessToken: mapboxgl.accessToken,
       unit: 'metric',
       profile: 'mapbox/driving',
-      alternatives: 'true',
+      alternatives: 'false',
       geometries: 'geojson'
     });
 
@@ -54,12 +50,10 @@ export default {
 
     mapboxMap.addControl(directions, 'top-right');
 
-    let obstacle = this.mockData.data
+    let mockData = await axios.get(appConfig.mockDataUrl)
+    let obstacle = mockData.data
+
     console.log(obstacle)
-
-    // let obstacles = turf.combine()
-    // turf.buffer(clearances, 0.25, { units: 'kilometers' })
-
     mapboxMap.on('load', (error) => {
 
       // mapboxMap.addSource('mockObstacles', {
@@ -80,9 +74,9 @@ export default {
         // source: "mockObstacles",
         layout: {},
         paint: {
-          'fill-color': floodLevelColor.aliceblue,
+          'fill-color': floodLevelColor.lightskyblue,
           'fill-opacity': 0.5,
-          'fill-outline-color': floodLevelColor.lightskyblue
+          'fill-outline-color': floodLevelColor.aliceblue
         }
       })
 
@@ -123,7 +117,6 @@ export default {
     mapboxMap.addControl(geoLocate, "top-right")
 
 
-
     directions.on('route', (e) => {
       let reports = document.getElementById('reports');
       reports.innerHTML = '';
@@ -149,7 +142,7 @@ export default {
 
         let collision = ''
         let emoji = ''
-        let clear = turf.booleanDisjoint(obstacle, routeLine)
+        let clear = booleanDisjoint(obstacle, routeLine)
         let detail = ''
 
         if (clear == true) {
@@ -190,8 +183,53 @@ export default {
       })
     })
 
-  },
-  methods: {
 
-  }
-}
+
+    // change cursor to pointer when user hovers over a clickable feature
+    mapboxMap.on('mouseenter', e => {
+      if (e.features.length) {
+        mapboxMap.getCanvas().style.cursor = 'pointer';
+      }
+    });
+
+    // reset cursor to default when user is no longer hovering over a clickable feature
+    mapboxMap.on('mouseleave', () => {
+      mapboxMap.getCanvas().style.cursor = '';
+    });
+
+    // add tooltip when users mouse move over a point
+    mapboxMap.on('mousemove', e => {
+      const features = mapboxMap.queryRenderedFeatures(e.point);
+      if (features.length) {
+        const feature = features[0];
+
+        // Create tooltip node
+        const tooltipNode = document.createElement('div');
+        ReactDOM.render(<Tooltip feature={feature} />, tooltipNode);
+
+        // Set tooltip on mapboxMap
+        tooltipRef.current
+          .setLngLat(e.lngLat)
+          .setDOMContent(tooltipNode)
+          .addTo(mapboxMap);
+      }
+    });
+
+    // Clean up on unmount
+    return () => mapboxMap.remove();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  return (
+    <div>
+      <div className='map-container' ref={mapContainerRef} />
+      <div className="sidebar">
+        <div className="heading">
+          <h1>Routes</h1>
+        </div>
+        <div id="reports" className="reports"></div>
+      </div>
+    </div>
+  );
+};
+
+export default Map;
