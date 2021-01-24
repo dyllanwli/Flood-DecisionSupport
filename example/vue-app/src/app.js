@@ -14,7 +14,7 @@ export default {
       }],
       miniVariant: false,
       fixed: false,
-      title: 'OSM dev dashboard',
+      title: 'development',
       showLoading: false
     }
   },

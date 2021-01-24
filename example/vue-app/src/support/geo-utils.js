@@ -1,4 +1,4 @@
-import layerZoomMapping from '@/config/layer-zoom-mapping'
+import layerZoomMapping from '@/config/layer-mapping-setting'
 import lodash from 'lodash'
 import Leaflet from 'leaflet'
 import moment from 'moment'

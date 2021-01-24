@@ -6,9 +6,9 @@
       :class="{ 'progress-linear-disabled': !showLoading }"
     ></v-progress-linear>
     <app-toaster></app-toaster>
-    <app-header
+    <!-- <app-header
       :class="{ a11y: $store.getters.mapSettings.acessibleModeActive }"
-    ></app-header>
+    ></app-header> -->
     <v-content
       class="app-content"
       :class="{ a11y: $store.getters.mapSettings.acessibleModeActive }"

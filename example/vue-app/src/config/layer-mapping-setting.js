@@ -4,7 +4,7 @@
 // Defines the default zoom that must be applied when a certain
 // object with a given layer is focused
 
-const layerZoomMapping = {
+const layerMappingSetting = {
   macrocounty: 3,
   country: 4,
   region: 7,
@@ -16,7 +16,14 @@ const layerZoomMapping = {
   localadmin: 13,
   street: 14,
   address: 16,
-  venue: 16
+  venue: 16,
+  floodLevelColor: {
+    aliceblue: "#F0F8FF",
+    lightskyblue: "#87CEFA",
+    dodgerblue: "#1E90FF",
+    blue: "#0000FF",
+    mediumblue: "#0000CD"
+  }
 }
 
-export default layerZoomMapping
+export default layerMappingSetting
