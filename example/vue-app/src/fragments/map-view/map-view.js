@@ -1976,8 +1976,11 @@ export default {
     async loadMockData() {
       console.log("setting mock data")
       if (!this.$store.getters.embed && defaultMapSettings.addMockFloodArea) {
-        this.mockData = await mockDataService.getMockData(defaultMapSettings.mockDataUrl)
-        this.addMockData()
+        if (!this.mockData) {
+          // if mockData is not null
+          this.mockData = await mockDataService.getMockData(defaultMapSettings.mockDataUrl)
+          this.addMockData()
+        }
       }
     },
     addMockData() {

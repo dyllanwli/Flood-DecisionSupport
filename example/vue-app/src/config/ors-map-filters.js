@@ -32,11 +32,13 @@ const filters = [
       'cycling-regular': {
         slug: 'cycling-regular',
         icon: 'directions_bike',
-        nestedProfiles: ['cycling-regular', 'cycling-road', 'cycling-electric', 'cycling-mountain']
+        nestedProfiles: ['cycling-regular']
+        // nestedProfiles: ['cycling-regular', 'cycling-road', 'cycling-electric', 'cycling-mountain']
       },
       'foot-walking': {
         slug: 'foot-walking',
         icon: 'directions_walk',
+        nestedProfiles: ['foot-walking']
         // nestedProfiles: ['foot-walking', 'foot-hiking']
       },
       'driving-car': {
@@ -46,6 +48,7 @@ const filters = [
       'driving-hgv': {
         slug: 'driving-hgv',
         icon: 'directions_bus',
+        vehicleTypes: ['driving-hgv']
         // vehicleTypes: ['bus', 'hgv', 'agricultural', 'delivery', 'forestry', 'goods']
       },
       // wheelchair: {
