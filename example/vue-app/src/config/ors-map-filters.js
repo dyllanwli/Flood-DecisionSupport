@@ -37,7 +37,7 @@ const filters = [
       'foot-walking': {
         slug: 'foot-walking',
         icon: 'directions_walk',
-        nestedProfiles: ['foot-walking', 'foot-hiking']
+        // nestedProfiles: ['foot-walking', 'foot-hiking']
       },
       'driving-car': {
         slug: 'driving-car',
@@ -46,7 +46,7 @@ const filters = [
       'driving-hgv': {
         slug: 'driving-hgv',
         icon: 'directions_bus',
-        vehicleTypes: ['bus', 'hgv', 'agricultural', 'delivery', 'forestry', 'goods']
+        // vehicleTypes: ['bus', 'hgv', 'agricultural', 'delivery', 'forestry', 'goods']
       },
       // wheelchair: {
       //   slug: 'wheelchair',

@@ -17,7 +17,10 @@ export default {
       clickPoint: null,
       clickLatlng: null,
       clickInsidePolygon: false,
-      data: null
+      data: null,
+      
+      // added features
+      clickInsidePolygonProp: null
     }
   },
   props: {
@@ -41,6 +44,20 @@ export default {
     placeInfoTitle () {
       const title = this.clickInsidePolygon ? this.$t('mapLeftClick.placeInsidePolygon') : this.$t('mapLeftClick.placeInfo')
       return title
+    },
+
+    mockInfo(){
+      if(this.clickInsidePolygonProp){
+        return this.clickInsidePolygonProp
+      }
+    },
+
+    hasMockInfo(){
+      // console.log("hasMockInfo", this.clickInsidePolygonProp)
+      if (this.clickPoint && this.clickInsidePolygonProp.mock_water_level) {
+        return true
+      }
+      return false
     }
   },
   methods: {
@@ -57,6 +74,7 @@ export default {
      */
     mapLeftClick (data) {
       this.clickInsidePolygon = data.insidePolygon
+      this.clickInsidePolygonProp = data.insidePolygonProp
       this.showLeftClickPopup = true
       this.clickLatlng = data.event.latlng
       this.clickPoint = { latlng: data.event.latlng }

@@ -1311,7 +1311,7 @@ export default {
      */
     mapRightClick(event) {
       if (this.showClickPopups) {
-        const insidePolygon = this.isPointInsidePolygons(event.latlng.lat, event.latlng.lng)
+        const { insidePolygon } = this.isPointInsidePolygons(event.latlng.lat, event.latlng.lng)
         if (!insidePolygon) {
           const mapEl = this.$refs.map.$el
           const data = { event, mapEl, canAddStop: this.canAddStop }
@@ -1382,8 +1382,8 @@ export default {
       const drawPolygonToolbarActive = this.lodash.get(this.drawControlRef, '_toolbars.draw._activeMode')
       const clckedOverPolyline = event.originalEvent && event.originalEvent.clckedOverPolyline === true
       if (this.showClickPopups && !drawPolygonToolbarActive && !clckedOverPolyline) {
-        const insidePolygon = this.isPointInsidePolygons(event.latlng.lat, event.latlng.lng)
-        const data = { event, insidePolygon }
+        const { insidePolygon, insidePolygonProp } = this.isPointInsidePolygons(event.latlng.lat, event.latlng.lng)
+        const data = { event, insidePolygon, insidePolygonProp }
         this.eventBus.$emit('mapLeftClicked', data)
         this.clickLatlng = { lat: event.latlng.lat, lng: event.latlng.lng }
       }
@@ -1413,18 +1413,25 @@ export default {
      * If it is returnd the polygon points array
      * @param {*} lat
      * @param {*} lng
-     * @returns {Boolean|Array}
+     * @returns {Boolean|Array, Object} 
      */
     isPointInsidePolygons(lat, lng) {
       for (const key in this.localAvoidPolygons) {
         let polygon = this.localAvoidPolygons[key]
         const coords = polygon.geometry.coordinates[0]
+        const properties = polygon.properties
         const inside = GeoUtils.isPointInsidePolygon(lat, lng, coords)
         if (inside) {
-          return coords
+          return {
+            insidePolygon: coords,
+            insidePolygonProp: properties
+          }
         }
       }
-      return false
+      return {
+        insidePolygon: false,
+        insidePolygonProp: false
+      }
     },
     /**
      * Adjust the map dimensions and redraw it according the current window size
@@ -1778,7 +1785,8 @@ export default {
             if (avoidConditions.avoidPolygonProperties(polygonGeoJson)) {
               if (inGeoJsonFormat) {
                 mapAvoidPolygons.push(polygonGeoJson)
-                console.log("added")
+                // debug
+                // console.log("added")
               } else {
                 mapAvoidPolygons.push(layer)
               }

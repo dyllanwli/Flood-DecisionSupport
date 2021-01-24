@@ -5,6 +5,9 @@
       <template v-if="hasPlaceInfo && clickInsidePolygon">
         {{$t('mapLeftClick.polygonArea')}}: <b>{{placeInfo.containerArea}}</b><br/>
       </template>
+      <template v-if="hasMockInfo && clickInsidePolygonProp">
+        {{$t('mapLeftClick.waterLevel')}}: <b>{{Math.round(mockInfo.mock_water_level * 100) / 100 + " m"}}</b><br/>
+      </template>
       <template v-if="hasPlaceInfo && placeInfo.placeName">
         <b>{{placeInfo.placeName}}</b><br/>
       </template>
