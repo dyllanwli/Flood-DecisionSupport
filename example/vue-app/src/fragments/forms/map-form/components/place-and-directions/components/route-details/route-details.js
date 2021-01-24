@@ -171,7 +171,7 @@ export default {
   },
   components: {
     Steps,
-    Download,
+    // Download,
     // Share,
     RouteExtras
   }

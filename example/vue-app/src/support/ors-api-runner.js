@@ -35,6 +35,7 @@ const Directions = (places, customArgs = null) => {
   if (customArgs) {
     args = Object.assign(args, customArgs)
   }
+  console.log("Directions", args)
   return new Promise((resolve, reject) => {
     directions.calculate(args).then(response => {
       const data = { options: { origin: constants.dataOrigins.directions, apiVersion: constants.apiVersion }, content: response }

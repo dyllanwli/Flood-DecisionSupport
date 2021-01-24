@@ -35,7 +35,7 @@ const appConfig = {
   sidebarStartsOpenInHeighResolution: false, // if the sidebar must start open in heigh resolution
   defaultTileProvider: 'osm', // the default tipe provider
   supportsAvoidPolygonDrawing: true, // if the avoid polygon drawing tools must be available on the map view
-  distanceMeasureToolAvailable: true, // if the polyline distance measure tool must be available on the map view
+  distanceMeasureToolAvailable: false, // if the polyline distance measure tool must be available on the map view
   accessbilityToolAvailable: true, // if the accessibility tool must be available on the map view
   fitAllFeaturesToolAvailable: true, // if the fitAllFeatures to0l must be available on the map view
   supportsClusteredMarkers: true, // if clusted markers is supported (then markers with `clustered=true` property will be clustered)

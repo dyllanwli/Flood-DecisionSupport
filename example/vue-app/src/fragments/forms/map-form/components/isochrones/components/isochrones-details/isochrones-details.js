@@ -18,7 +18,7 @@ export default {
   },
   components: {
     // Share,
-    Download
+    // Download
   },
   methods: {
     calcArea (polygon) {
