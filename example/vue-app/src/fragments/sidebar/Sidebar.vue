@@ -28,7 +28,7 @@
             <div class="logo-container">
               <a :href="homeUrl"
                 ><img
-                  height="52.5"
+                  height="60"
                   class="small ml-2"
                   :src="getConfigVal('logoImgSrc')"
                   :title="getConfigVal('appName')"
