@@ -4,8 +4,8 @@
 // You can change the value of a property (a supported values), but shouldn't remove a property
 
 const appConfig = {
-  appName: 'flood-route-map',
-  footerAppName: 'flood-route-map',
+  appName: 'Flood Routing Map',
+  footerAppName: 'Flood Routing Map',
   baseAppUrl: '/', // could be, for example, '/map'
   dataServiceBaseUrl: 'dataServiceBaseUrl',
   appMenu: {
