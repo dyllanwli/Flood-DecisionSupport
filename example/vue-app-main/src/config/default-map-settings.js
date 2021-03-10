@@ -40,7 +40,8 @@ const defaultMapSettings = {
   suitabilityOfWays: false,
   distanceMarkers: false,
   addMockFloodArea: true,
-  mockDataUrl: "https://raw.githubusercontent.com/TAMUCIDI/demo-data/main/mockFlood.geojson"
+  mockDataUrl: "https://raw.githubusercontent.com/TAMUCIDI/demo-data/main/Houston_flood.geojson"
+  // mockDataUrl: "https://raw.githubusercontent.com/TAMUCIDI/demo-data/main/mockFlood.geojson"
 }
 
 export default defaultMapSettings

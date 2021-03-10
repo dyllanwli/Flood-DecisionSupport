@@ -54,7 +54,7 @@ export default {
 
     hasMockInfo(){
       // console.log("hasMockInfo", this.clickInsidePolygonProp)
-      if (this.clickPoint && this.clickInsidePolygonProp.mock_water_level) {
+      if (this.clickPoint && this.clickInsidePolygonProp.Depth) {
         return true
       }
       return false

@@ -3,7 +3,7 @@ export default {
     placeInfo: 'Place info',
     placeInsidePolygon: 'Place inside polygon',
     polygonArea: 'Polygon area',
-    waterLevel: 'Mock Water Level',
+    waterLevel: 'Water Level',
     copyLnglat: 'Copy lng, lat',
     copyLatlng: 'Copy lat, lng',
     directionsToClickedPoint: 'Directions to clicked place',

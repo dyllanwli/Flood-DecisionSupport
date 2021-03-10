@@ -1791,7 +1791,7 @@ export default {
                 mapAvoidPolygons.push(layer)
               }
             } else {
-              // console.log(polygonGeoJson.properties.mock_water_level)
+              // console.log(polygonGeoJson.properties.Depth)
             }
           } else {
             // usually those polygon are empty list []

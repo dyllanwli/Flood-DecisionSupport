@@ -5,6 +5,7 @@ installation
 ./scripts/init.sh
 npm run dev
 ```
++ default port 8080
 
 # Notes
 + custom element loaded via `compoment/somejs.js` as `CompomentName` and be added to someVue.vue as `compoment-name`
@@ -15,3 +16,5 @@ npm run dev
 + get menu done from store/modules/app-ui.js; src/main.js
     - menu config can be found on app-config.js and the menu is loaded via app-loader.js's fetchMainMenu from app-ui.js, where MainMenu is definied at @/common/main-menu
 + to add map left information, edit map-view and map-left-information with event data
++ mock-view option
+    - fragments - map-view.js
