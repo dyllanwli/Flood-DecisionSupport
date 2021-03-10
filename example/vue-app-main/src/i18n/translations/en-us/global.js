@@ -15,7 +15,7 @@ export default {
     ok: 'OK',
     polygon: 'polygon',
     apiProviderIntro: 'API Provider',
-    apiProvider: 'openrouteservice.org',
+    apiProvider: 'graphhopper + openrouteservice.org',
     duration: 'Duration: ',
     distance: 'Distance: ',
     elevation: 'Elevation',
